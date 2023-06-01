@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.alibaba:fastjson:1.2.83_noneautotype">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.83_noneautotype/fastjson-1.2.83_noneautotype.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.83_noneautotype/fastjson-1.2.83_noneautotype-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.83_noneautotype/fastjson-1.2.83_noneautotype-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
