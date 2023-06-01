@@ -17,7 +17,7 @@ package com.alibaba.csp.sentinel.dashboard.config;
 
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.ApiDefinitionEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.GatewayFlowRuleEntity;
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.*;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.PropertyKeyConst;
@@ -43,6 +43,10 @@ public class NacosConfig {
     @Value("${nacos.namespace}")
     private String namespace;
 
+    /**
+     * 流控规则 Converter
+     * @return
+     */
     @Bean
     public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
         return JSON::toJSONString;
@@ -54,23 +58,64 @@ public class NacosConfig {
     }
 
     /**
-     * 网关API
-     *
+     * 降级规则 Converter
      * @return
      */
     @Bean
-    public Converter<List<ApiDefinitionEntity>, String> apiDefinitionEntityEncoder() {
+    public Converter<List<DegradeRuleEntity>, String> degradeRuleEntityEncoder() {
         return JSON::toJSONString;
     }
 
     @Bean
-    public Converter<String, List<ApiDefinitionEntity>> apiDefinitionEntityDecoder() {
-        return s -> JSON.parseArray(s, ApiDefinitionEntity.class);
+    public Converter<String, List<DegradeRuleEntity>> degradeRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, DegradeRuleEntity.class);
     }
 
     /**
-     * 网关flowRule
-     *
+     * 热点规则 Converter
+     * @return
+     */
+    @Bean
+    public Converter<List<ParamFlowRuleEntity>, String> paramsRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+    @Bean
+    public Converter<String, List<ParamFlowRuleEntity>> paramsRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, ParamFlowRuleEntity.class);
+    }
+
+    /**
+     * 系统规则 Converter
+     * @return
+     */
+    @Bean
+    public Converter<List<SystemRuleEntity>, String> systemRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+    @Bean
+    public Converter<String, List<SystemRuleEntity>> systemRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, SystemRuleEntity.class);
+    }
+
+    /**
+     * 授权规则 Converter
+     * @return
+     */
+    @Bean
+    public Converter<List<AuthorityRuleEntity>, String> authRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+
+    @Bean
+    Converter<String, List<AuthorityRuleEntity>> authRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, AuthorityRuleEntity.class);
+    }
+
+    /**
+     * 网关限流规则 Converter
      * @return
      */
     @Bean
@@ -78,9 +123,25 @@ public class NacosConfig {
         return JSON::toJSONString;
     }
 
+
     @Bean
-    public Converter<String, List<GatewayFlowRuleEntity>> gatewayFlowRuleEntityDecoder() {
+    Converter<String, List<GatewayFlowRuleEntity>> gatewayFlowRuleEntityDecoder() {
         return s -> JSON.parseArray(s, GatewayFlowRuleEntity.class);
+    }
+
+    /**
+     * 网关API限流规则 Converter
+     * @return
+     */
+    @Bean
+    public Converter<List<ApiDefinitionEntity>, String> gatewayApiRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+
+    @Bean
+    Converter<String, List<ApiDefinitionEntity>> gatewayApiRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, ApiDefinitionEntity.class);
     }
 
     @Bean
