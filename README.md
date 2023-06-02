@@ -3,6 +3,9 @@
 
 支持使用nacos作为动态数据源的规则设置，支持流控规则、熔断规则、热点规则、系统规则、授权规则、网关API分组规则、网关流控规则
 
+## 注意事项
+在使用SpringCloud Gateway和SpringCloud Sentinel时，官方不支持针对4xx,5xx响应码做异常统计熔断，可以自行实现，可参考[issue1842](https://github.com/alibaba/Sentinel/issues/1842)
+
 # Sentinel 控制台
 
 ## 0. 概述
